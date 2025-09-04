@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATOM x LIGHT</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', monospace;
+            background: #000000;
+            margin: 0;
+            padding: 20px;
+            color: #cccccc;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-direction: row-reverse;
+            /* border: 1px solid #333; */
+            padding: 20px;
+        }
+        .controls {
+            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid #333;
+            border-radius: 2px;
+            padding: 20px;
+            min-width: 250px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+        .control-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 300;
+            color: #aaaaaa;
+            font-size: 20px;
+            /* text-transform: uppercase; */
+            letter-spacing: 1px;
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 2px;
+            border-radius: 0;
+            background: #333;
+            outline: none;
+            -webkit-appearance: none;
+            margin-bottom: 8px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 0;
+            background: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 0;
+            background: #ffffff;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        .value {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 8px;
+            font-family: monospace;
+        }
+        .button-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        button {
+            padding: 8px;
+            border: 1px solid #555;
+            border-radius: 0;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: #222;
+            color: #ccc;
+        }
+        .play-stop {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-stop:hover {
+            background: #333;
+            border-color: #777;
+        }
+        .reset {
+            flex: 1;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 6px;
+            height: 40px;
+        }
+        .reset:hover {
+            background: #333;
+            border-color: #777;
+        }
+        .canvas-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="rabiSlider">Ω/2π</label>
+                <input type="range" id="rabiSlider" min="0" max="10" value="2" step="0.1">
+                <div class="value" id="rabiValue">2.0 MHz</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="detuningSlider">δ/2π</label>
+                <input type="range" id="detuningSlider" min="-10" max="10" value="0" step="0.1">
+                <div class="value" id="detuningValue">0.0 MHz</div>
+            </div>
+            
+            <div class="button-row">
+                <button class="play-stop" id="playStopBtn">▶</button>
+                <button class="reset" id="resetBtn">Reset</button>
+            </div>
+        </div>
+        
+        <div class="canvas-container" id="canvas-container"></div>
+    </div>
+	<script src="sketch.js"></script>
+</body>
+</html>
